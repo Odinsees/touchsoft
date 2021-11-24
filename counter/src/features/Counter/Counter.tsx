@@ -1,7 +1,7 @@
 import Button from "../../Components/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../app/store";
-import {decrementCount, incrementCount, resetCount} from "./counter-reducer";
+import {decrementCount, incrementCount, oddOrEvenNumber, resetCount, setOddOrEven} from "./counter-reducer";
 import {useState} from "react";
 import style from './Counter.module.scss'
 
@@ -32,12 +32,15 @@ export const Counter = () => {
 
     const evenOrOddNumber = () => {
         if (value === startValue) {
+            dispatch(setOddOrEven(oddOrEvenNumber.evenNumber))
             return 'start value'
         }
-        if (value % 2 === 0 && value !== 0) {
+        if (value % 2 === 0) {
+            dispatch(setOddOrEven(oddOrEvenNumber.evenNumber))
             return 'even number'
         }
-        if (value % 2 !== 0 && value !== 0) {
+        if (value % 2 !== 0) {
+            dispatch(setOddOrEven(oddOrEvenNumber.oddNumber))
             return 'odd number'
         }
     }
@@ -45,9 +48,9 @@ export const Counter = () => {
     return (
         <div className={style.counterWrapper}>
             <div className={style.valueBlock}>
-                <div className={style.value}>
+                <span className={style.value}>
                     {value}
-                </div>
+                </span>
             </div>
             <div className={style.messageText}>
                 {error
@@ -56,9 +59,11 @@ export const Counter = () => {
                 }
             </div>
             <div className={style.buttonBlock}>
-                <Button onClick={incrementCountHandler}>+</Button>
-                <Button onClick={resetCountHandler}>Reset</Button>
-                <Button onClick={decrementCountHandler} disabled={error}>-</Button>
+                <div className={style.buttonBox}>
+                    <Button onClick={incrementCountHandler}>+</Button>
+                    <Button onClick={resetCountHandler} disabled={value === 0}>Reset</Button>
+                    <Button onClick={decrementCountHandler} disabled={error}>-</Button>
+                </div>
             </div>
         </div>
     )
