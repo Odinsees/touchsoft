@@ -21,8 +21,10 @@ function App() {
     }
 
     return (
-        <div className={backGroundColor()}>
-            <Counter/>
+        <div className={style.appWrapper}>
+            <div className={backGroundColor()}>
+                <Counter/>
+            </div>
         </div>
     );
 }
