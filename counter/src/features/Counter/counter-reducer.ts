@@ -1,14 +1,16 @@
 type InitialStateType = {
     value: number
+    startValue: number
 }
 
 type ActionType =
-    |ReturnType<typeof resetCount>
-    |ReturnType<typeof incrementCount>
-    |ReturnType<typeof decrementCount>
+    | ReturnType<typeof resetCount>
+    | ReturnType<typeof incrementCount>
+    | ReturnType<typeof decrementCount>
 
-const initialState = {
-    value: 0
+const initialState: InitialStateType = {
+    value: 0,
+    startValue: 0,
 }
 
 export const counterReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
@@ -16,7 +18,7 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
         case "RESET-COUNT":
             return {
                 ...state,
-                value: 0
+                value: state.startValue
             }
         case "INCREMENT-COUNT":
             return {

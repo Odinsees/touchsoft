@@ -4,7 +4,7 @@ import {Counter} from "../features/Counter/Counter";
 
 function App() {
   return (
-    <div>
+    <div className={'App'}>
       <Counter/>
     </div>
   );
