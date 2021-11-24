@@ -5,9 +5,12 @@ import {decrementCount, incrementCount, oddOrEvenNumber, resetCount, setOddOrEve
 import {useState} from "react";
 import style from './Counter.module.scss'
 
-export const Counter = () => {
+type CounterPropsType ={
+    value:number
+}
 
-    const value = useSelector<AppRootStateType, number>(state => state.counter.value)
+export const Counter = ({value}:CounterPropsType) => {
+
     const startValue = useSelector<AppRootStateType, number>(state => state.counter.startValue)
     const dispatch = useDispatch()
 

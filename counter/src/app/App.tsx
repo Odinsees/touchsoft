@@ -23,7 +23,7 @@ function App() {
     return (
         <div className={style.appWrapper}>
             <div className={backGroundColor()}>
-                <Counter/>
+                <Counter value={value}/>
             </div>
         </div>
     );
